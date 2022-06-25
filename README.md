@@ -35,11 +35,11 @@ The database is set up on 8 nodes.
 
 ## Feature extraction
 
-The features are extracted by creating vectors from them. If the type of a feature is 'string', it first undergoes tokenization and stopwords removal before being vectorized. Then, we concatenate the vectors and numerical features together to create 202-dimensional vectors for each comment. Finally, the vectors undergo principal component analysis (PCA) to reduce the dimensionality. Finally, we end up with 30 features for each comment.
+The features are extracted by creating vectors from them. If the type of a feature is 'string', it first undergoes tokenization and stopwords removal before being vectorized. Then, we concatenate the vectors and numerical features together to create 202-dimensional vectors for each comment. The vectors then undergo principal component analysis (PCA) to reduce the dimensionality. Finally, we end up with 30 features for each comment.
 
 ## Classifier
 
-To predict the number of recommendadtions we utilize a random forest classifier from PySpark. Since the number of recommendations can vary between 0 and ~30 (after removing outliers), we decided to binarize it to two classes: <=4 recommendations and >4 recommendations.
+To predict the number of recommendadtions we utilize a random forest classifier from PySpark. Since the number of recommendations can vary between 0 and ~30 (after removing outliers), we decided to bucketize it to four classes.
 
 ## Problems encountered
 
