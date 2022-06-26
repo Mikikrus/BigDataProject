@@ -2,7 +2,7 @@
 
 ## Project description
 
-The project is about predicting the number of recommendations of a comment performed on New York Times Comments dataset that can be found under the link https://www.kaggle.com/datasets/aashita/nyt-comments. Main challanges of this project are handling large data volume and feature engineering.
+The project is about predicting the number of recommendations of a comment performed on New York Times Articles & Comments dataset that can be found under the link https://www.kaggle.com/datasets/benjaminawd/new-york-times-articles-comments-2020. Main challanges of this project are handling large data volume and feature engineering.
 
 ## Database
 
@@ -50,3 +50,4 @@ To predict the number of recommendadtions we utilize a random forest classifier 
 
 We had some major issues for which we used up quite a lot of time. First, we discovered that the dataset contained combinations of commas and quotes that messed up the PySpark's .csv default reading method. Luckily we were able to easily resolve it by changing some options in said method (but finding out which options should be changed took some time).
 Another problem was with Null values in the article abstracts and keywords. We didn't want to simply drop the rows that caused issues but replace the Nulls with mean values from the column - this turned out to be quite troublesome to do with DenseVectors inside a PySpark dataframe. Regular pandas-esque methods didn't work here, but luckily we managed to do it using pyspark.sql.functions.udf (user defined function).
+
