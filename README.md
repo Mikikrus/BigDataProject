@@ -29,13 +29,18 @@ As stated before, we determined the time elapsed from publication to posting a c
 
 ![schema](https://user-images.githubusercontent.com/62818677/175786969-d272793c-cba8-4393-ae6b-7529c1c6eba3.png)
 
+We decided to partition comments table to increase the performance of the code. As a partition key we chose 'recommendations' column. After removing outliers is contained approx. ~30 unique values,
+which made it an ideal candidate for a partition key.
+
+
 ### PySpark
 
-The database is set up on 8 nodes.
+Pyspark is set to work with up to 8 workers. Final code was run on azure databricks with autoscaling setting, which enables
+to increase/decrease number of workers depending on the workload.
 
 ## Feature extraction
 
-The features are extracted by creating vectors from them. If the type of a feature is 'string', it first undergoes tokenization and stopwords removal before being vectorized. Then, we concatenate the vectors and numerical features together to create 202-dimensional vectors for each comment. The vectors then undergo principal component analysis (PCA) to reduce the dimensionality. Finally, we end up with 30 features for each comment.
+The features are extracted by creating vectors from them. If the type of a feature is 'string', it first undergoes tokenization and stopwords removal before being vectorized. Then, we concatenate the vectors and numerical features together to create n-dimensional vectors for each comment. The vectors then undergo principal component analysis (PCA) to reduce the dimensionality. Finally, we end up with 30 features for each comment.
 
 ## Classifier
 
